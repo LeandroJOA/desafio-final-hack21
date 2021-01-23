@@ -66,7 +66,7 @@ public class CardController {
         // Chama o metodo "deleteById" do Service, o deletando do banco de dados
         cardService.deleteById(userId);
 
-        //Por padrão, retorna o status HTTP 204
+        //Por padrão, retorna o status HTTP 200
     }
 
     // Metodo para atuailizar um registro específico, através de seu ID

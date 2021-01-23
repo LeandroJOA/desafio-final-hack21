@@ -51,8 +51,12 @@ public class CardController {
         // Chama o metodo "FindById" do Service, armazenando o registro encontrado em "card"
         Card card = cardService.findById(userId);
 
-        // Retorna, junto ao status HTTP 200, o registro encontrado
-        return new ResponseEntity(card, HttpStatus.OK);
+        if (card != null) {
+            // Retorna, junto ao status HTTP 200, o registro encontrado
+            return new ResponseEntity(card, HttpStatus.OK);
+        } else {
+            return new ResponseEntity(null, HttpStatus.NOT_FOUND);
+        }
     }
 
     // Metodo para deletar um registro específico, através de seu ID
@@ -66,7 +70,7 @@ public class CardController {
         // Chama o metodo "deleteById" do Service, o deletando do banco de dados
         cardService.deleteById(userId);
 
-        //Por padrão, retorna o status HTTP 204
+        //Por padrão, retorna o status HTTP 200
     }
 
     // Metodo para atuailizar um registro específico, através de seu ID

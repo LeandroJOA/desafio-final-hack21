@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class CardService {
@@ -38,8 +39,13 @@ public class CardService {
     // Metodo para buscar um registro específico
     public Card findById(Long userId) {
 
-        // Busca o registro utilizando seu "id" e retorna o elemento encontrado
-        return cardRepository.findById(userId).get();
+        try {
+            // Busca o registro utilizando seu "id" e retorna o elemento encontrado
+            return cardRepository.findById(userId).get();
+        }catch (NoSuchElementException exception) {
+            exception.printStackTrace();
+        }
+        return null;
     }
 
     // Metodo para deletar um registro específico
